@@ -21,6 +21,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'Motion' do |motion|
+    motion.dependency 'PermissionScope/Core'
     motion.source_files         = 'PermissionScope/Motion/*.swift'
     motion.weak_framework       = 'CoreMotion'
     motion.pod_target_xcconfig  = feature_flags
