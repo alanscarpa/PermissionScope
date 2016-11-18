@@ -31,11 +31,6 @@ import AVFoundation
 import Photos
 #endif
 
-#if PermissionScopeRequestContactsEnabled
-import AddressBook
-import Contacts
-#endif
-
 #if PermissionScopeRequestEventsEnabled || PermissionScopeRequestRemindersEnabled
 import EventKit
 #endif
@@ -507,65 +502,6 @@ typealias resultsForConfigClosure     = ([PermissionResult]) -> Void
 
     public func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         detectAndCallback()
-    }
-    #endif
-
-    // MARK: Contacts
-
-    #if PermissionScopeRequestContactsEnabled
-
-    /**
-    Returns the current permission status for accessing Contacts.
-    
-    - returns: Permission status for the requested type.
-    */
-    public func statusContacts() -> PermissionStatus {
-        if #available(iOS 9.0, *) {
-            let status = CNContactStore.authorizationStatus(for: .contacts)
-            switch status {
-            case .authorized:
-                return .authorized
-            case .restricted, .denied:
-                return .unauthorized
-            case .notDetermined:
-                return .unknown
-            }
-        } else {
-            // Fallback on earlier versions
-            let status = ABAddressBookGetAuthorizationStatus()
-            switch status {
-            case .authorized:
-                return .authorized
-            case .restricted, .denied:
-                return .unauthorized
-            case .notDetermined:
-                return .unknown
-            }
-        }
-    }
-
-    /**
-    Requests access to Contacts, if necessary.
-    */
-    public func requestContacts() {
-        let status = statusContacts()
-        switch status {
-        case .unknown:
-            if #available(iOS 9.0, *) {
-                CNContactStore().requestAccess(for: .contacts, completionHandler: {
-                    success, error in
-                    self.detectAndCallback()
-                })
-            } else {
-                ABAddressBookRequestAccessWithCompletion(nil) { success, error in
-                    self.detectAndCallback()
-                }
-            }
-        case .unauthorized:
-            self.showDeniedAlert(.contacts)
-        default:
-            break
-        }
     }
     #endif
 
@@ -1279,31 +1215,7 @@ typealias resultsForConfigClosure     = ([PermissionResult]) -> Void
     */
     func statusForPermission(_ type: PermissionType, completion: statusRequestClosure) {
         // Get permission status
-        let permissionStatus: PermissionStatus
-        switch type {
-        case .locationAlways:
-            permissionStatus = statusLocationAlways()
-        case .locationInUse:
-            permissionStatus = statusLocationInUse()
-        case .contacts:
-            permissionStatus = statusContacts()
-        case .notifications:
-            permissionStatus = statusNotifications()
-        case .microphone:
-            permissionStatus = statusMicrophone()
-        case .camera:
-            permissionStatus = statusCamera()
-        case .photos:
-            permissionStatus = statusPhotos()
-        case .reminders:
-            permissionStatus = statusReminders()
-        case .events:
-            permissionStatus = statusEvents()
-        case .bluetooth:
-            permissionStatus = statusBluetooth()
-        case .motion:
-            permissionStatus = statusMotion()
-        }
+        let permissionStatus = type.status
         
         // Perform completion
         completion(permissionStatus)
