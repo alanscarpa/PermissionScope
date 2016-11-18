@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.homepage = 'https://github.com/nickoneill/PermissionScope'
   s.social_media_url = 'https://twitter.com/objctoswift'
   s.authors = { "Nick O'Neill" => 'nick.oneill@gmail.com' }
-  s.source = { :git => 'https://github.com/nickoneill/PermissionScope.git', :tag => s.version }
+  s.source = { :git => 'git@github.com:alanscarpa/PermissionScope.git', :branch => 'alan/separateFrameworks' }
 
   s.ios.deployment_target = '8.0'
 
