@@ -13,4 +13,19 @@ Pod::Spec.new do |s|
   s.source_files = 'PermissionScope/*.swift'
 
   s.requires_arc = true
+
+  s.default_subspec = 'Core'
+
+  s.subspec 'Core' do |core|
+    core.source_files         = 'PermissionScope/*.{swift,h}'
+  end
+
+  s.subspec 'Motion' do |motion|
+    motion.dependency 'PermissionScope/Core'
+    motion.source_files = 'PermissionScope/Motion/*.swift'
+    motion.weak_framework       = 'CoreMotion'
+    motion.pod_target_xcconfig  = feature_flags
+    motion.user_target_xcconfig = feature_flags
+  end
+
 end
