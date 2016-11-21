@@ -18,18 +18,33 @@ class Location: PermissionScope {
     }()
 }
 
-@objc public class LocationWhileInUsePermission: NSObject, Permission {
+@objc public class LocationWhileInUsePermissionDetails: NSObject, PermissionDetails {
     public let type: PermissionType = .locationInUse
     public var status: PermissionStatus {
         return PermissionScope().statusLocationInUse()
     }
+    override public var description: String {
+        return "LocationInUse"
+    }
+    public var prettyDescription: String {
+        return "Location"
+    }
+    public var isALocationType = true
 }
 
-@objc public class LocationAlwaysPermission: NSObject, Permission {
+@objc public class LocationAlwaysPermissionDetails: NSObject, PermissionDetails {
     public let type: PermissionType = .locationAlways
     public var status: PermissionStatus {
         return PermissionScope().statusLocationAlways()
     }
+    override public var description: String {
+        return "LocationAlways"
+    }
+    public var prettyDescription: String {
+        return "Location"
+    }
+    public var isALocationType
+        = true
 }
 
 extension PermissionScope: CLLocationManagerDelegate {

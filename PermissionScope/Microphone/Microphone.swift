@@ -10,11 +10,18 @@
 
 import AVFoundation
 
-@objc public class MicrophonePermission: NSObject, Permission {
+@objc public class MicrophonePermissionDetails: NSObject, PermissionDetails {
     public let type: PermissionType = .microphone
     public var status: PermissionStatus {
         return PermissionScope().statusMicrophone()
     }
+    override public var description: String {
+        return "Microphone"
+    }
+    public var prettyDescription: String {
+        return description
+    }
+    public var isALocationType = false
 }
 
 extension PermissionScope {

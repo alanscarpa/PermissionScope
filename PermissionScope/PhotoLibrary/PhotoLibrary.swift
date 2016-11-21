@@ -10,11 +10,18 @@
 
 import Photos
 
-@objc public class PhotosPermission: NSObject, Permission {
+@objc public class PhotosPermissionDetails: NSObject, PermissionDetails {
     public let type: PermissionType = .photos
     public var status: PermissionStatus {
         return PermissionScope().statusPhotos()
     }
+    override public var description: String {
+        return "Photos"
+    }
+    public var prettyDescription: String {
+        return description
+    }
+    public var isALocationType = false
 }
 
 extension PermissionScope {

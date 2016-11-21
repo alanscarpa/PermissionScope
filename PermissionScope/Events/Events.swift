@@ -10,11 +10,18 @@
 
 import EventKit
 
-@objc public class EventsPermission: NSObject, Permission {
+@objc public class EventsPermissionDetails: NSObject, PermissionDetails {
     public let type: PermissionType = .events
     public var status: PermissionStatus {
         return PermissionScope().statusEvents()
     }
+    override public var description: String {
+        return "Events"
+    }
+    public var prettyDescription: String {
+        return description
+    }
+    public var isALocationType = false
 }
 
 extension PermissionScope {

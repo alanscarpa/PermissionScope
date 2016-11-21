@@ -6,20 +6,6 @@
 //  Copyright © 2015 That Thing in Swift. All rights reserved.
 //
 
-struct PermissionTypeDetails: CustomStringConvertible {
-    var description: String
-    var prettyDescription: String
-    var status: PermissionStatus
-    var isALocationType: Bool
-
-    init(description: String = "", prettyDescription: String? = nil, isALocationType: Bool = false, status: PermissionStatus = .unknown) {
-        self.description = description
-        self.prettyDescription = prettyDescription == nil ? description : prettyDescription!
-        self.isALocationType = isALocationType
-        self.status = status
-    }
-}
-
 /// Permissions currently supportes by PermissionScope
 @objc public enum PermissionType: Int {
     #if PermissionScopeRequestContactsEnabled
@@ -54,60 +40,60 @@ struct PermissionTypeDetails: CustomStringConvertible {
     case motion
     #endif
 
-    var details: PermissionTypeDetails {
+    var details: PermissionDetails? {
         #if PermissionScopeRequestContactsEnabled
             if self == .contacts {
-                return PermissionTypeDetails(description: "Contacts", status: PermissionScope().statusContacts())
+                return ContactsPermissionDetails()
             }
         #endif
         #if PermissionScopeRequestLocationEnabled
             if self == .locationAlways {
-                return PermissionTypeDetails(description: "LocationAlways", prettyDescription: "Location", isALocationType: true, status: PermissionScope().statusLocationAlways())
-            }else if self == .locationInUse {
-                return PermissionTypeDetails(description: "LocationInUse", prettyDescription: "Location", isALocationType: true, status: PermissionScope().statusLocationInUse())
+                return LocationAlwaysPermissionDetails()
+            } else if self == .locationInUse {
+                return LocationWhileInUsePermissionDetails()
             }
         #endif
         #if PermissionScopeRequestNotificationsEnabled
             if self == .notifications {
-                return PermissionTypeDetails(description: "Notifications", status: PermissionScope().statusNotifications())
+                return NotificationsPermissionDetails()
             }
         #endif
         #if PermissionScopeRequestMicrophoneEnabled
             if self == .microphone {
-                return PermissionTypeDetails(description: "Microphone", status: PermissionScope().statusMicrophone())
+                return MicrophonePermissionDetails()
             }
         #endif
         #if PermissionScopeRequestCameraEnabled
             if self == .camera {
-                return PermissionTypeDetails(description: "Camera", status: PermissionScope().statusCamera())
+                return CameraPermissionDetails()
             }
         #endif
         #if PermissionScopeRequestPhotoLibraryEnabled
             if self == .photos {
-                return PermissionTypeDetails(description: "Photos", status: PermissionScope().statusPhotos())
+                return PhotosPermissionDetails()
             }
         #endif
         #if PermissionScopeRequestRemindersEnabled
             if self == .reminders {
-                return PermissionTypeDetails(description: "Reminders", status: PermissionScope().statusReminders())
+                return RemindersPermissionDetails()
             }
         #endif
         #if PermissionScopeRequestEventsEnabled
             if self == .events {
-                return PermissionTypeDetails(description: "Events", status: PermissionScope().statusEvents())
+                return EventsPermissionDetails()
             }
         #endif
         #if PermissionScopeRequestBluetoothEnabled
             if self == .bluetooth {
-                return PermissionTypeDetails(description: "Bluetooth", status: PermissionScope().statusBluetooth())
+                return BluetoothPermissionDetails()
             }
         #endif
         #if PermissionScopeRequestMotionEnabled
             if self == .motion {
-                return PermissionTypeDetails(description: "Motion", status: PermissionScope().statusMotion())
+                return MotionPermissionDetails()
             }
         #endif
-        return PermissionTypeDetails()
+        return nil
     }
     
     static var allValues: [PermissionType] {

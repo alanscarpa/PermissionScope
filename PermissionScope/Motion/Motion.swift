@@ -16,11 +16,18 @@ class Motion: PermissionScope {
     }()
 }
 
-@objc public class MotionPermission: NSObject, Permission {
+@objc public class MotionPermissionDetails: NSObject, PermissionDetails {
     public let type: PermissionType = .motion
     public var status: PermissionStatus {
         return PermissionScope().statusMotion()
     }
+    override public var description: String {
+        return "Motion"
+    }
+    public var prettyDescription: String {
+        return description
+    }
+    public var isALocationType = false
     @objc public func triggerStatusUpdate() {
         if PermissionScope().askedMotion {
             PermissionScope().triggerMotionStatusUpdate()

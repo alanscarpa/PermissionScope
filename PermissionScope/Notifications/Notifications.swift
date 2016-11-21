@@ -8,11 +8,18 @@
 
 #if PermissionScopeRequestNotificationsEnabled
 
-@objc public class NotificationsPermission: NSObject, Permission {
+@objc public class NotificationsPermissionDetails: NSObject, PermissionDetails {
     public let type: PermissionType = .notifications
     public var status: PermissionStatus {
         return PermissionScope().statusNotifications()
     }
+    override public var description: String {
+        return "Notifications"
+    }
+    public var prettyDescription: String {
+        return description
+    }
+    public var isALocationType = false
     public let notificationCategories: Set<UIUserNotificationCategory>?
 
     public init(notificationCategories: Set<UIUserNotificationCategory>? = nil) {
@@ -108,7 +115,7 @@ extension PermissionScope {
         switch status {
         case .unknown:
             let notificationsPermission = self.configuredPermissions
-                .first { $0 is NotificationsPermission } as? NotificationsPermission
+                .first { $0 is NotificationsPermissionDetails } as? NotificationsPermissionDetails
             let notificationsPermissionSet = notificationsPermission?.notificationCategories
 
             NotificationCenter.default.addObserver(self, selector: #selector(showingNotificationPermission), name: NSNotification.Name.UIApplicationWillResignActive, object: nil)

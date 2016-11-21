@@ -10,11 +10,18 @@
 
 import AVFoundation
 
-@objc public class CameraPermission: NSObject, Permission {
+@objc public class CameraPermissionDetails: NSObject, PermissionDetails {
     public let type: PermissionType = .camera
     public var status: PermissionStatus {
         return PermissionScope().statusCamera()
     }
+    override public var description: String {
+        return "Camera"
+    }
+    public var prettyDescription: String {
+        return description
+    }
+    public var isALocationType = false
 }
 
 extension PermissionScope {

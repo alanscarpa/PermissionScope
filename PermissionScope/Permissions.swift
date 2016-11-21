@@ -9,9 +9,13 @@
 /**
 *  Protocol for permission configurations.
 */
-@objc public protocol Permission {
+@objc public protocol PermissionDetails {
     /// Permission type
     var type: PermissionType { get }
+    var status: PermissionStatus { get }
+    var description: String { get }
+    var prettyDescription: String { get }
+    var isALocationType: Bool { get }
     @objc optional func triggerStatusUpdate()
 }
 

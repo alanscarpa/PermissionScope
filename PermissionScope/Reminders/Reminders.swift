@@ -10,11 +10,18 @@
 
 import EventKit
 
-@objc public class RemindersPermission: NSObject, Permission {
+@objc public class RemindersPermissionDetails: NSObject, PermissionDetails {
     public let type: PermissionType = .reminders
     public var status: PermissionStatus {
         return PermissionScope().statusReminders()
     }
+    override public var description: String {
+        return "Reminders"
+    }
+    public var prettyDescription: String {
+        return description
+    }
+    public var isALocationType = false
 }
 
 extension PermissionScope {

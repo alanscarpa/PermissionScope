@@ -11,8 +11,16 @@
 import AddressBook
 import Contacts
 
-@objc public class ContactsPermission: NSObject, Permission {
-    public let type: PermissionType = .contacts
+@objc public class ContactsPermissionDetails: NSObject, PermissionDetails {
+    public var type: PermissionType = .contacts
+    public var status: PermissionStatus = PermissionScope().statusContacts()
+    override public var description: String {
+        return "Contacts"
+    }
+    public var prettyDescription: String {
+        return description
+    }
+    public var isALocationType = false
 }
 
 extension PermissionScope {

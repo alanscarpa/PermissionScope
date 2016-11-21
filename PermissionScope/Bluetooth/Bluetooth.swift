@@ -17,11 +17,18 @@ class Bluetooth: PermissionScope {
     }()
 }
 
-@objc public class BluetoothPermission: NSObject, Permission {
+@objc public class BluetoothPermissionDetails: NSObject, PermissionDetails {
     public let type: PermissionType = .bluetooth
     public var status: PermissionStatus {
         return PermissionScope().statusBluetooth()
     }
+    override public var description: String {
+        return "Bluetooth"
+    }
+    public var prettyDescription: String {
+        return description
+    }
+    public var isALocationType = false
     @objc public func triggerStatusUpdate() {
         if PermissionScope().askedBluetooth {
             PermissionScope().triggerBluetoothStatusUpdate()
