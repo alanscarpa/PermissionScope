@@ -6,9 +6,6 @@
 //  Copyright © 2015 That Thing in Swift. All rights reserved.
 //
 
-import Foundation
-import UIKit
-
 enum Constants {
     struct UI {
         static let contentWidth: CGFloat                 = 280.0

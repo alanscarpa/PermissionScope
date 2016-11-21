@@ -6,8 +6,6 @@
 //  Copyright © 2015 That Thing in Swift. All rights reserved.
 //
 
-import Foundation
-
 /// Permissions currently supportes by PermissionScope
 @objc public enum PermissionType: Int, CustomStringConvertible {
     #if PermissionScopeRequestContactsEnabled
@@ -41,7 +39,43 @@ import Foundation
     #if PermissionScopeRequestMotionEnabled
     case motion
     #endif
-    
+
+    public var status: PermissionStatus {
+        switch self {
+        case .contacts:
+            return PermissionScope().statusContacts()
+        case .events:
+            return PermissionScope().statusEvents()
+        case .locationAlways:
+            return PermissionScope().statusLocationAlways()
+        case .locationInUse:
+            return PermissionScope().statusLocationInUse()
+        case .notifications:
+            return PermissionScope().statusNotifications()
+        case .microphone:
+            return PermissionScope().statusMicrophone()
+        case .camera:
+            return PermissionScope().statusCamera()
+        case .photos:
+            return PermissionScope().statusPhotos()
+        case .reminders:
+            return PermissionScope().statusReminders()
+        case .bluetooth:
+            return PermissionScope().statusBluetooth()
+        case .motion:
+            return PermissionScope().statusMotion()
+        }
+    }
+
+    public var isALocationType: Bool {
+        switch self {
+        case .locationAlways, .locationInUse:
+            return true
+        default:
+            return false
+        }
+    }
+
     public var prettyDescription: String {
         // TODO:  This will not compile due to same problem described below.
         switch self {

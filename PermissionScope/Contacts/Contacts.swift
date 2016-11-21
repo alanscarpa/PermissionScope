@@ -6,8 +6,6 @@
 //  Copyright © 2016 That Thing in Swift. All rights reserved.
 //
 
-import Foundation
-
 #if PermissionScopeRequestContactsEnabled
 
 import AddressBook
@@ -15,13 +13,6 @@ import Contacts
 
 @objc public class ContactsPermission: NSObject, Permission {
     public let type: PermissionType = .contacts
-    public var status: PermissionStatus {
-        return PermissionScope().statusContacts()
-    }
-}
-
-@objc public class Contacts: PermissionScope {
-
 }
 
 extension PermissionScope {

@@ -11,7 +11,16 @@
 		2487CEE11B87B01E00766A1A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2487CEE01B87B01E00766A1A /* Extensions.swift */; };
 		2487CEE31B87B05200766A1A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2487CEE21B87B05200766A1A /* Constants.swift */; };
 		2487CEE51B87B61E00766A1A /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2487CEE41B87B61E00766A1A /* Structs.swift */; };
+		45B112E61DE35CF300E93F21 /* Microphone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B112E51DE35CF300E93F21 /* Microphone.swift */; };
+		45B112E91DE35D9000E93F21 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B112E81DE35D9000E93F21 /* Camera.swift */; };
+		45B112EC1DE35E2B00E93F21 /* PhotoLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B112EB1DE35E2B00E93F21 /* PhotoLibrary.swift */; };
+		45B112EF1DE35ED400E93F21 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B112EE1DE35ED400E93F21 /* Events.swift */; };
+		45B112F21DE35F6D00E93F21 /* Reminders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B112F11DE35F6D00E93F21 /* Reminders.swift */; };
 		45F7ECF41DDFAF3C007A9E66 /* Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F7ECF31DDFAF3C007A9E66 /* Contacts.swift */; };
+		45F7ECF71DE34968007A9E66 /* Bluetooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F7ECF61DE34968007A9E66 /* Bluetooth.swift */; };
+		45F7ECFA1DE35563007A9E66 /* Motion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F7ECF91DE35563007A9E66 /* Motion.swift */; };
+		45F7ECFD1DE35903007A9E66 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F7ECFC1DE35903007A9E66 /* Location.swift */; };
+		45F7ED001DE35BA5007A9E66 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F7ECFF1DE35BA5007A9E66 /* Notifications.swift */; };
 		D023BA601B3B47C90006D8E2 /* PermissionScope.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D092BA331AD1E5A300BFC163 /* PermissionScope.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D05F10431AD1EBF6000F8267 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05F10421AD1EBF6000F8267 /* AppDelegate.swift */; };
 		D05F10451AD1EBF6000F8267 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05F10441AD1EBF6000F8267 /* ViewController.swift */; };
@@ -79,7 +88,16 @@
 		2487CEE01B87B01E00766A1A /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		2487CEE21B87B05200766A1A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2487CEE41B87B61E00766A1A /* Structs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
+		45B112E51DE35CF300E93F21 /* Microphone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Microphone.swift; sourceTree = "<group>"; };
+		45B112E81DE35D9000E93F21 /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
+		45B112EB1DE35E2B00E93F21 /* PhotoLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoLibrary.swift; sourceTree = "<group>"; };
+		45B112EE1DE35ED400E93F21 /* Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
+		45B112F11DE35F6D00E93F21 /* Reminders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reminders.swift; sourceTree = "<group>"; };
 		45F7ECF31DDFAF3C007A9E66 /* Contacts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contacts.swift; sourceTree = "<group>"; };
+		45F7ECF61DE34968007A9E66 /* Bluetooth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bluetooth.swift; sourceTree = "<group>"; };
+		45F7ECF91DE35563007A9E66 /* Motion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Motion.swift; sourceTree = "<group>"; };
+		45F7ECFC1DE35903007A9E66 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		45F7ECFF1DE35BA5007A9E66 /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		D05F103E1AD1EBF6000F8267 /* PermissionScope-example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PermissionScope-example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D05F10411AD1EBF6000F8267 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D05F10421AD1EBF6000F8267 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -132,12 +150,84 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		45B112E41DE35CE300E93F21 /* Microphone */ = {
+			isa = PBXGroup;
+			children = (
+				45B112E51DE35CF300E93F21 /* Microphone.swift */,
+			);
+			path = Microphone;
+			sourceTree = "<group>";
+		};
+		45B112E71DE35D8400E93F21 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				45B112E81DE35D9000E93F21 /* Camera.swift */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
+		45B112EA1DE35E0C00E93F21 /* PhotoLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				45B112EB1DE35E2B00E93F21 /* PhotoLibrary.swift */,
+			);
+			path = PhotoLibrary;
+			sourceTree = "<group>";
+		};
+		45B112ED1DE35EC800E93F21 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				45B112EE1DE35ED400E93F21 /* Events.swift */,
+			);
+			path = Events;
+			sourceTree = "<group>";
+		};
+		45B112F01DE35F5D00E93F21 /* Reminders */ = {
+			isa = PBXGroup;
+			children = (
+				45B112F11DE35F6D00E93F21 /* Reminders.swift */,
+			);
+			path = Reminders;
+			sourceTree = "<group>";
+		};
 		45F7ECF21DDFAF17007A9E66 /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
 				45F7ECF31DDFAF3C007A9E66 /* Contacts.swift */,
 			);
 			path = Contacts;
+			sourceTree = "<group>";
+		};
+		45F7ECF51DE34957007A9E66 /* Bluetooth */ = {
+			isa = PBXGroup;
+			children = (
+				45F7ECF61DE34968007A9E66 /* Bluetooth.swift */,
+			);
+			path = Bluetooth;
+			sourceTree = "<group>";
+		};
+		45F7ECF81DE3554F007A9E66 /* Motion */ = {
+			isa = PBXGroup;
+			children = (
+				45F7ECF91DE35563007A9E66 /* Motion.swift */,
+			);
+			path = Motion;
+			sourceTree = "<group>";
+		};
+		45F7ECFB1DE358EE007A9E66 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				45F7ECFC1DE35903007A9E66 /* Location.swift */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
+		45F7ECFE1DE35B94007A9E66 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				45F7ECFF1DE35BA5007A9E66 /* Notifications.swift */,
+			);
+			path = Notifications;
 			sourceTree = "<group>";
 		};
 		D05F103F1AD1EBF6000F8267 /* PermissionScope-example */ = {
@@ -186,6 +276,15 @@
 		D092BA351AD1E5A300BFC163 /* PermissionScope */ = {
 			isa = PBXGroup;
 			children = (
+				45B112F01DE35F5D00E93F21 /* Reminders */,
+				45B112ED1DE35EC800E93F21 /* Events */,
+				45B112EA1DE35E0C00E93F21 /* PhotoLibrary */,
+				45B112E71DE35D8400E93F21 /* Camera */,
+				45B112E41DE35CE300E93F21 /* Microphone */,
+				45F7ECFE1DE35B94007A9E66 /* Notifications */,
+				45F7ECFB1DE358EE007A9E66 /* Location */,
+				45F7ECF81DE3554F007A9E66 /* Motion */,
+				45F7ECF51DE34957007A9E66 /* Bluetooth */,
 				45F7ECF21DDFAF17007A9E66 /* Contacts */,
 				D092BA381AD1E5A300BFC163 /* PermissionScope.h */,
 				D092BA4F1AD1E67300BFC163 /* PermissionScope.swift */,
@@ -395,12 +494,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45B112F21DE35F6D00E93F21 /* Reminders.swift in Sources */,
+				45F7ED001DE35BA5007A9E66 /* Notifications.swift in Sources */,
+				45B112EC1DE35E2B00E93F21 /* PhotoLibrary.swift in Sources */,
 				2487CEE51B87B61E00766A1A /* Structs.swift in Sources */,
 				D092BA501AD1E67300BFC163 /* PermissionScope.swift in Sources */,
+				45B112EF1DE35ED400E93F21 /* Events.swift in Sources */,
 				45F7ECF41DDFAF3C007A9E66 /* Contacts.swift in Sources */,
 				2487CEE11B87B01E00766A1A /* Extensions.swift in Sources */,
+				45F7ECFD1DE35903007A9E66 /* Location.swift in Sources */,
 				244B5BA81B8D5E7900FFA019 /* Permissions.swift in Sources */,
+				45B112E61DE35CF300E93F21 /* Microphone.swift in Sources */,
+				45B112E91DE35D9000E93F21 /* Camera.swift in Sources */,
+				45F7ECFA1DE35563007A9E66 /* Motion.swift in Sources */,
 				2487CEE31B87B05200766A1A /* Constants.swift in Sources */,
+				45F7ECF71DE34968007A9E66 /* Bluetooth.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
