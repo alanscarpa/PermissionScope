@@ -11,8 +11,6 @@
 import CoreMotion
 
 class Motion: PermissionScope {
-    static let sharedInstance = Motion()
-
     lazy var motionManager:CMMotionActivityManager = {
         return CMMotionActivityManager()
     }()
@@ -68,7 +66,7 @@ extension PermissionScope {
         defaults.synchronize()
 
         let today = Date()
-        Motion.sharedInstance.motionManager.queryActivityStarting(from: today,
+        Motion().motionManager.queryActivityStarting(from: today,
                                             to: today,
                                             to: .main) { activities, error in
                                                 if let error = error , error._code == Int(CMErrorMotionActivityNotAuthorized.rawValue) {
@@ -77,7 +75,7 @@ extension PermissionScope {
                                                     self.motionPermissionStatus = .authorized
                                                 }
 
-                                                Motion.sharedInstance.motionManager.stopActivityUpdates()
+                                                Motion().motionManager.stopActivityUpdates()
                                                 if tmpMotionPermissionStatus != self.motionPermissionStatus {
                                                     self.waitingForMotion = false
                                                     self.detectAndCallback()
@@ -99,4 +97,5 @@ extension PermissionScope {
         }
     }
 }
+
 #endif

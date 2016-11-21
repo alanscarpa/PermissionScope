@@ -11,8 +11,6 @@
 import CoreLocation
 
 class Location: PermissionScope {
-    static let sharedInstance = Location()
-
     lazy var locationManager:CLLocationManager = {
         let lm = CLLocationManager()
         lm.delegate = self
@@ -78,7 +76,7 @@ extension PermissionScope: CLLocationManagerDelegate {
                 defaults.set(true, forKey: Constants.NSUserDefaultsKeys.requestedInUseToAlwaysUpgrade)
                 defaults.synchronize()
             }
-            Location.sharedInstance.locationManager.requestAlwaysAuthorization()
+            Location().locationManager.requestAlwaysAuthorization()
         case .unauthorized:
             self.showDeniedAlert(.locationAlways)
         case .disabled:
@@ -120,7 +118,7 @@ extension PermissionScope: CLLocationManagerDelegate {
         let status = statusLocationInUse()
         switch status {
         case .unknown:
-            Location.sharedInstance.locationManager.requestWhenInUseAuthorization()
+            Location().locationManager.requestWhenInUseAuthorization()
         case .unauthorized:
             self.showDeniedAlert(.locationInUse)
         case .disabled:

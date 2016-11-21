@@ -12,8 +12,6 @@
 import CoreBluetooth
 
 class Bluetooth: PermissionScope {
-    static let sharedInstance = Bluetooth()
-
     lazy var bluetoothManager:CBPeripheralManager = {
         return CBPeripheralManager(delegate: self, queue: nil, options:[CBPeripheralManagerOptionShowPowerAlertKey: false])
     }()
@@ -38,9 +36,9 @@ extension PermissionScope: CBPeripheralManagerDelegate {
      its permission dialog.
      */
     internal func triggerBluetoothStatusUpdate() {
-        if !waitingForBluetooth && Bluetooth.sharedInstance.bluetoothManager.state == .unknown {
-            Bluetooth.sharedInstance.bluetoothManager.startAdvertising(nil)
-            Bluetooth.sharedInstance.bluetoothManager.stopAdvertising()
+        if !waitingForBluetooth && Bluetooth().bluetoothManager.state == .unknown {
+            Bluetooth().bluetoothManager.startAdvertising(nil)
+            Bluetooth().bluetoothManager.stopAdvertising()
             askedBluetooth = true
             waitingForBluetooth = true
         }
@@ -77,7 +75,7 @@ extension PermissionScope: CBPeripheralManagerDelegate {
             return .unknown
         }
 
-        let state = (Bluetooth.sharedInstance.bluetoothManager.state, CBPeripheralManager.authorizationStatus())
+        let state = (Bluetooth().bluetoothManager.state, CBPeripheralManager.authorizationStatus())
         switch state {
         case (.unsupported, _), (.poweredOff, _), (_, .restricted):
             return .disabled
