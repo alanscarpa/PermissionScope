@@ -22,6 +22,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'Motion' do |motion|
     motion.dependency 'PermissionScope/Core'
+    motion.source_files = 'PermissionScope/Motion/*.swift'
     motion.weak_framework       = 'CoreMotion'
     feature_flags               = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'PermissionScopeRequestMotionEnabled' }
     motion.pod_target_xcconfig  = feature_flags
@@ -30,6 +31,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'Bluetooth' do |bluetooth|
     bluetooth.dependency 'PermissionScope/Core'
+    bluetooth.source_files = 'PermissionScope/Bluetooth/*.swift'
     bluetooth.weak_framework       = 'CoreBluetooth'
     feature_flags               = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'PermissionScopeRequestBluetoothEnabled' }
     bluetooth.pod_target_xcconfig  = feature_flags
@@ -38,6 +40,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'Location' do |location|
     location.dependency 'PermissionScope/Core'
+    location.source_files = 'PermissionScope/Location/*.swift'
     location.weak_framework       = 'CoreLocation'
     feature_flags                 = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'PermissionScopeRequestLocationEnabled' }
     location.pod_target_xcconfig  = feature_flags
@@ -46,6 +49,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'Microphone' do |mic|
     mic.dependency 'PermissionScope/Core'
+    mic.source_files = 'PermissionScope/Microphone/*.swift'
     mic.weak_framework       = 'AVFoundation'
     feature_flags            = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'PermissionScopeRequestMicrophoneEnabled' }
     mic.pod_target_xcconfig  = feature_flags
@@ -54,6 +58,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'PhotoLibrary' do |photo|
     photo.dependency 'PermissionScope/Core'
+    photo.source_files = 'PermissionScope/PhotoLibrary/*.swift'
     photo.weak_framework       = 'Photos', 'AssetsLibrary'
     feature_flags              = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'PermissionScopeRequestPhotoLibraryEnabled' }
     photo.pod_target_xcconfig  = feature_flags
@@ -62,6 +67,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'Camera' do |cam|
     cam.dependency 'PermissionScope/Core'
+    cam.source_files = 'PermissionScope/Camera/*.swift'
     cam.weak_framework       = 'AVFoundation'
     feature_flags            = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'PermissionScopeRequestCameraEnabled' }
     cam.pod_target_xcconfig  = feature_flags
@@ -70,6 +76,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'Notifications' do |note|
     note.dependency 'PermissionScope/Core'
+    note.source_files = 'PermissionScope/Notifications/*.swift'
     note.weak_framework       = 'UIKit', 'UserNotifications'
     feature_flags             = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'PermissionScopeRequestNotificationsEnabled' }
     note.pod_target_xcconfig  = feature_flags
@@ -78,6 +85,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'Contacts' do |contacts|
     contacts.dependency 'PermissionScope/Core'
+    contacts.source_files = 'PermissionScope/Contacts/*.swift'
     contacts.weak_framework       = 'Contacts', 'AddressBook'
     feature_flags                 = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'PermissionScopeRequestContactsEnabled' }
     contacts.pod_target_xcconfig  = feature_flags
@@ -86,6 +94,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'Events' do |cal|
     cal.dependency 'PermissionScope/Core'
+    cal.source_files = 'PermissionScope/Events/*.swift'
     cal.weak_framework       = 'EventKit'
     feature_flags            = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'PermissionScopeRequestEventsEnabled' }
     cal.pod_target_xcconfig  = feature_flags
@@ -94,6 +103,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'Reminders' do |rem|
     rem.dependency 'PermissionScope/Core'
+    rem.source_files = 'PermissionScope/Reminders/*.swift'
     rem.weak_framework       = 'EventKit'
     feature_flags            = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'PermissionScopeRequestRemindersEnabled' }
     rem.pod_target_xcconfig  = feature_flags

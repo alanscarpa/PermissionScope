@@ -393,8 +393,7 @@ typealias resultsForConfigClosure     = ([PermissionResult]) -> Void
         onCancel = cancelled
         
         DispatchQueue.main.async {
-            while
-                self.waitingForBluetooth || self.waitingForMotion { }
+            while self.waitingForBluetooth || self.waitingForMotion { }
             // call other methods that need to wait before show
             // no missing required perms? callback and do nothing
             self.requiredAuthorized({ areAuthorized in
