@@ -249,7 +249,7 @@ typealias resultsForConfigClosure     = ([PermissionResult]) -> Void
             
             statusForPermission(type,
                 completion: { currentStatus in
-                    let prettyDescription = type.prettyDescription
+                    let prettyDescription = type.details.prettyDescription
                     if currentStatus == .authorized {
                         self.setButtonAuthorizedStyle(button)
                         button.setTitle("Allowed \(prettyDescription)".localized.uppercased(), for: .normal)
@@ -306,7 +306,7 @@ typealias resultsForConfigClosure     = ([PermissionResult]) -> Void
         button.layer.borderColor = permissionButtonBorderColor.cgColor
         button.layer.cornerRadius = permissionButtonCornerRadius
 
-        let title = type.isALocationType ? "Enable \(type.prettyDescription)".localized.uppercased() : "Allow \(type)".localized.uppercased()
+        let title = type.details.isALocationType ? "Enable \(type.details.prettyDescription)".localized.uppercased() : "Allow \(type)".localized.uppercased()
         button.setTitle(title, for: .normal)
         
         button.addTarget(self, action: Selector("request\(type)"), for: .touchUpInside)
@@ -520,8 +520,8 @@ typealias resultsForConfigClosure     = ([PermissionResult]) -> Void
             })
         }
         
-        let alert = UIAlertController(title: "Permission for \(permission.prettyDescription) was denied.".localized,
-            message: "Please enable access to \(permission.prettyDescription) in the Settings app".localized,
+        let alert = UIAlertController(title: "Permission for \(permission.details.prettyDescription) was denied.".localized,
+            message: "Please enable access to \(permission.details.prettyDescription) in the Settings app".localized,
             preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK".localized,
             style: .cancel,
@@ -554,8 +554,8 @@ typealias resultsForConfigClosure     = ([PermissionResult]) -> Void
             })
         }
         
-        let alert = UIAlertController(title: "\(permission.prettyDescription) is currently disabled.".localized,
-            message: "Please enable access to \(permission.prettyDescription) in Settings".localized,
+        let alert = UIAlertController(title: "\(permission.details.prettyDescription) is currently disabled.".localized,
+            message: "Please enable access to \(permission.details.prettyDescription) in Settings".localized,
             preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK".localized,
             style: .cancel,
@@ -597,7 +597,7 @@ typealias resultsForConfigClosure     = ([PermissionResult]) -> Void
     */
     func statusForPermission(_ type: PermissionType, completion: statusRequestClosure) {
         // Get permission status
-        let permissionStatus = type.status
+        let permissionStatus = type.details.status
         
         // Perform completion
         completion(permissionStatus)

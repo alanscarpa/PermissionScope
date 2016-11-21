@@ -6,8 +6,22 @@
 //  Copyright © 2015 That Thing in Swift. All rights reserved.
 //
 
+struct PermissionTypeDetails: CustomStringConvertible {
+    var description: String
+    var prettyDescription: String
+    var status: PermissionStatus
+    var isALocationType: Bool
+
+    init(description: String = "", prettyDescription: String? = nil, isALocationType: Bool = false, status: PermissionStatus = .unknown) {
+        self.description = description
+        self.prettyDescription = prettyDescription == nil ? description : prettyDescription!
+        self.isALocationType = isALocationType
+        self.status = status
+    }
+}
+
 /// Permissions currently supportes by PermissionScope
-@objc public enum PermissionType: Int, CustomStringConvertible {
+@objc public enum PermissionType: Int {
     #if PermissionScopeRequestContactsEnabled
     case contacts
     #endif
@@ -40,68 +54,60 @@
     case motion
     #endif
 
-    public var status: PermissionStatus {
-        switch self {
-        case .contacts:
-            return PermissionScope().statusContacts()
-        case .events:
-            return PermissionScope().statusEvents()
-        case .locationAlways:
-            return PermissionScope().statusLocationAlways()
-        case .locationInUse:
-            return PermissionScope().statusLocationInUse()
-        case .notifications:
-            return PermissionScope().statusNotifications()
-        case .microphone:
-            return PermissionScope().statusMicrophone()
-        case .camera:
-            return PermissionScope().statusCamera()
-        case .photos:
-            return PermissionScope().statusPhotos()
-        case .reminders:
-            return PermissionScope().statusReminders()
-        case .bluetooth:
-            return PermissionScope().statusBluetooth()
-        case .motion:
-            return PermissionScope().statusMotion()
-        }
-    }
-
-    public var isALocationType: Bool {
-        switch self {
-        case .locationAlways, .locationInUse:
-            return true
-        default:
-            return false
-        }
-    }
-
-    public var prettyDescription: String {
-        // TODO:  This will not compile due to same problem described below.
-        switch self {
-        case .locationAlways, .locationInUse:
-            return "Location"
-        default:
-            return "\(self)"
-        }
-    }
-    
-    public var description: String {
-        /* TODO: This will not compile when used in a project (unless project is asking ALL permissions) because any permission that is not used will have it's enum undefined due to the #ifendif statements around the enum definition above.
-        */
-        switch self {
-        case .contacts:         return "Contacts"
-        case .events:           return "Events"
-        case .locationAlways:   return "LocationAlways"
-        case .locationInUse:    return "LocationInUse"
-        case .notifications:    return "Notifications"
-        case .microphone:       return "Microphone"
-        case .camera:           return "Camera"
-        case .photos:           return "Photos"
-        case .reminders:        return "Reminders"
-        case .bluetooth:        return "Bluetooth"
-        case .motion:           return "Motion"
-        }
+    var details: PermissionTypeDetails {
+        #if PermissionScopeRequestContactsEnabled
+            if self == .contacts {
+                return PermissionTypeDetails(description: "Contacts", status: PermissionScope().statusContacts())
+            }
+        #endif
+        #if PermissionScopeRequestLocationEnabled
+            if self == .locationAlways {
+                return PermissionTypeDetails(description: "LocationAlways", prettyDescription: "Location", isALocationType: true, status: PermissionScope().statusLocationAlways())
+            }else if self == .locationInUse {
+                return PermissionTypeDetails(description: "LocationInUse", prettyDescription: "Location", isALocationType: true, status: PermissionScope().statusLocationInUse())
+            }
+        #endif
+        #if PermissionScopeRequestNotificationsEnabled
+            if self == .notifications {
+                return PermissionTypeDetails(description: "Notifications", status: PermissionScope().statusNotifications())
+            }
+        #endif
+        #if PermissionScopeRequestMicrophoneEnabled
+            if self == .microphone {
+                return PermissionTypeDetails(description: "Microphone", status: PermissionScope().statusMicrophone())
+            }
+        #endif
+        #if PermissionScopeRequestCameraEnabled
+            if self == .camera {
+                return PermissionTypeDetails(description: "Camera", status: PermissionScope().statusCamera())
+            }
+        #endif
+        #if PermissionScopeRequestPhotoLibraryEnabled
+            if self == .photos {
+                return PermissionTypeDetails(description: "Photos", status: PermissionScope().statusPhotos())
+            }
+        #endif
+        #if PermissionScopeRequestRemindersEnabled
+            if self == .reminders {
+                return PermissionTypeDetails(description: "Reminders", status: PermissionScope().statusReminders())
+            }
+        #endif
+        #if PermissionScopeRequestEventsEnabled
+            if self == .events {
+                return PermissionTypeDetails(description: "Events", status: PermissionScope().statusEvents())
+            }
+        #endif
+        #if PermissionScopeRequestBluetoothEnabled
+            if self == .bluetooth {
+                return PermissionTypeDetails(description: "Bluetooth", status: PermissionScope().statusBluetooth())
+            }
+        #endif
+        #if PermissionScopeRequestMotionEnabled
+            if self == .motion {
+                return PermissionTypeDetails(description: "Motion", status: PermissionScope().statusMotion())
+            }
+        #endif
+        return PermissionTypeDetails()
     }
     
     static var allValues: [PermissionType] {
