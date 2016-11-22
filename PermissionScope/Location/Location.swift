@@ -10,14 +10,6 @@
 
 import CoreLocation
 
-class Location: PermissionScope {
-    lazy var locationManager:CLLocationManager = {
-        let lm = CLLocationManager()
-        lm.delegate = self
-        return lm
-    }()
-}
-
 @objc public class LocationWhileInUsePermissionDetails: NSObject, PermissionDetails {
     public let type: PermissionType = .locationInUse
     public var status: PermissionStatus {
@@ -43,11 +35,23 @@ class Location: PermissionScope {
     public var prettyDescription: String {
         return "Location"
     }
-    public var isALocationType
-        = true
+    public var isALocationType = true
+}
+
+class LocationManager {
+    
+    lazy var locationManager:CLLocationManager = {
+        let lm = CLLocationManager()
+        return lm
+    }()
+
+    init(delegate: CLLocationManagerDelegate) {
+        locationManager.delegate = delegate
+    }
 }
 
 extension PermissionScope: CLLocationManagerDelegate {
+
     /**
      Returns the current permission status for accessing LocationAlways.
 
@@ -91,7 +95,7 @@ extension PermissionScope: CLLocationManagerDelegate {
                 defaults.set(true, forKey: Constants.NSUserDefaultsKeys.requestedInUseToAlwaysUpgrade)
                 defaults.synchronize()
             }
-            Location().locationManager.requestAlwaysAuthorization()
+            locationManager.locationManager.requestAlwaysAuthorization()
         case .unauthorized:
             self.showDeniedAlert(.locationAlways)
         case .disabled:
@@ -133,7 +137,7 @@ extension PermissionScope: CLLocationManagerDelegate {
         let status = statusLocationInUse()
         switch status {
         case .unknown:
-            Location().locationManager.requestWhenInUseAuthorization()
+            locationManager.locationManager.requestWhenInUseAuthorization()
         case .unauthorized:
             self.showDeniedAlert(.locationInUse)
         case .disabled:

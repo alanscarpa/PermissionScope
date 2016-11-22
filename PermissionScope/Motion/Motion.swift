@@ -10,12 +10,6 @@
 
 import CoreMotion
 
-class Motion: PermissionScope {
-    lazy var motionManager:CMMotionActivityManager = {
-        return CMMotionActivityManager()
-    }()
-}
-
 @objc public class MotionPermissionDetails: NSObject, PermissionDetails {
     public let type: PermissionType = .motion
     public var status: PermissionStatus {
@@ -36,6 +30,10 @@ class Motion: PermissionScope {
 }
 
 extension PermissionScope {
+
+    var motionManager: CMMotionActivityManager  {
+        return CMMotionActivityManager()
+    }
 
     /**
      Returns the current permission status for accessing Core Motion Activity.
@@ -73,7 +71,7 @@ extension PermissionScope {
         defaults.synchronize()
 
         let today = Date()
-        Motion().motionManager.queryActivityStarting(from: today,
+        motionManager.queryActivityStarting(from: today,
                                             to: today,
                                             to: .main) { activities, error in
                                                 if let error = error , error._code == Int(CMErrorMotionActivityNotAuthorized.rawValue) {
@@ -82,7 +80,7 @@ extension PermissionScope {
                                                     self.motionPermissionStatus = .authorized
                                                 }
 
-                                                Motion().motionManager.stopActivityUpdates()
+                                                self.motionManager.stopActivityUpdates()
                                                 if tmpMotionPermissionStatus != self.motionPermissionStatus {
                                                     self.waitingForMotion = false
                                                     self.detectAndCallback()

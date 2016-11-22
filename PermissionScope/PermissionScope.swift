@@ -15,6 +15,10 @@ typealias resultsForConfigClosure     = ([PermissionResult]) -> Void
 
 @objc public class PermissionScope: UIViewController, UIGestureRecognizerDelegate {
 
+    #if PermissionScopeRequestLocationEnabled
+    let locationManager = LocationManager(delegate: self)
+    #endif
+
     // MARK: UI Parameters
     
     /// Header UILabel with the message "Hey, listen!" by default.
@@ -369,7 +373,8 @@ typealias resultsForConfigClosure     = ([PermissionResult]) -> Void
     //MARK: Bluetooth
     
     /// Returns whether PermissionScope is waiting for the user to enable/disable bluetooth access or not.
-    /// This is outside of #endif because it is accessed by another method that is not dependant on Bluetooth being enabled.
+
+    /// This is outside of the Bluetooth extension because it is accessed by another method that is not dependent on Bluetooth being enabled.
     internal var waitingForBluetooth = false
 
     // MARK: Core Motion Activity
@@ -377,7 +382,11 @@ typealias resultsForConfigClosure     = ([PermissionResult]) -> Void
     /// Returns whether PermissionScope is waiting for the user to enable/disable motion access or not.
     /// This is outside of #endif because it is accessed by another method that is not dependant on Motion being enabled.
     internal var waitingForMotion = false
-    
+
+    // MARK: Managers
+
+    internal var locationManagerIsSet = false
+
     // MARK: - UI
     
     /**

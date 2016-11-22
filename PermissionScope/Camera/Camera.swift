@@ -25,6 +25,7 @@ import AVFoundation
 }
 
 extension PermissionScope {
+    
     /**
      Returns the current permission status for accessing the Camera.
 

@@ -11,12 +11,6 @@
 
 import CoreBluetooth
 
-class Bluetooth: PermissionScope {
-    lazy var bluetoothManager:CBPeripheralManager = {
-        return CBPeripheralManager(delegate: self, queue: nil, options:[CBPeripheralManagerOptionShowPowerAlertKey: false])
-    }()
-}
-
 @objc public class BluetoothPermissionDetails: NSObject, PermissionDetails {
     public let type: PermissionType = .bluetooth
     public var status: PermissionStatus {
@@ -38,14 +32,18 @@ class Bluetooth: PermissionScope {
 
 extension PermissionScope: CBPeripheralManagerDelegate {
 
+    var bluetoothManager: CBPeripheralManager {
+        return CBPeripheralManager(delegate: self, queue: nil, options:[CBPeripheralManagerOptionShowPowerAlertKey: false])
+    }
+
     /**
      Start and immediately stop bluetooth advertising to trigger
      its permission dialog.
      */
     internal func triggerBluetoothStatusUpdate() {
-        if !waitingForBluetooth && Bluetooth().bluetoothManager.state == .unknown {
-            Bluetooth().bluetoothManager.startAdvertising(nil)
-            Bluetooth().bluetoothManager.stopAdvertising()
+        if !waitingForBluetooth && bluetoothManager.state == .unknown {
+            bluetoothManager.startAdvertising(nil)
+            bluetoothManager.stopAdvertising()
             askedBluetooth = true
             waitingForBluetooth = true
         }
@@ -82,7 +80,7 @@ extension PermissionScope: CBPeripheralManagerDelegate {
             return .unknown
         }
 
-        let state = (Bluetooth().bluetoothManager.state, CBPeripheralManager.authorizationStatus())
+        let state = (bluetoothManager.state, CBPeripheralManager.authorizationStatus())
         switch state {
         case (.unsupported, _), (.poweredOff, _), (_, .restricted):
             return .disabled

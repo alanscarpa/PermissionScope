@@ -24,6 +24,7 @@ import Contacts
 }
 
 extension PermissionScope {
+    
     /**
      Returns the current permission status for accessing Contacts.
 

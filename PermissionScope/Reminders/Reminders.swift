@@ -25,6 +25,7 @@ import EventKit
 }
 
 extension PermissionScope {
+    
     /**
      Returns the current permission status for accessing Reminders.
 
